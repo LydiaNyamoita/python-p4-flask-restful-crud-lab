@@ -35,9 +35,14 @@ function PlantPage() {
   }
 
   const displayedPlants = plants.filter((plant) => {
-    return plant.name.toLowerCase().includes(searchTerm.toLowerCase());
+    // Check if the 'name' property exists and is not undefined
+    if (plant.name) {
+      return plant.name.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+    // Return false for plants without a 'name' property
+    return false;
   });
-
+  
   return (
     <main>
       <NewPlantForm onAddPlant={handleAddPlant} />
